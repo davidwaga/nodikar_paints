@@ -1,2 +1,8 @@
 Django==6.1.1
 Pillow>=10.0
+python-dotenv
+whitenoise
+django-compressor
+pytest
+pytest-django
+flake8
