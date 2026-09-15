@@ -1,0 +1,134 @@
+{% extends "base.html" %} {% block title %}ColorCraft Paints | Quality Paints in
+Uganda{% endblock %} {% block content %}
+<section class="hero">
+  <div class="container">
+    <div class="row align-items-center min-vh-75">
+      <div class="col-lg-7">
+        <span class="badge bg-light text-dark mb-3"
+          >QUALITY • DURABILITY • BEAUTY</span
+        >
+        <h1>Bring Your Walls <span>To Life.</span></h1>
+        <p class="lead">
+          Premium paints and finishes made for beautiful, durable spaces.
+        </p>
+        <a href="{% url 'product_list' %}" class="btn btn-light btn-lg me-2"
+          >Explore Products</a
+        >
+        <a href="{% url 'quote' %}" class="btn btn-outline-light btn-lg"
+          >Request a Quote</a
+        >
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="py-5">
+  <div class="container">
+    <div class="text-center mb-4">
+      <h2>Our Paint Categories</h2>
+      <p class="text-muted">Solutions for every surface and project.</p>
+    </div>
+    <div class="row g-4">
+      {% for category in categories %}
+      <div class="col-6 col-lg-4">
+        <div class="category-card h-100">
+          {% if category.image %}<img
+            src="{{ category.image.url }}"
+            alt="{{ category.name }}"
+          />{% endif %}
+          <div class="p-4">
+            <h5>{{ category.name }}</h5>
+            <p>{{ category.description|truncatewords:18 }}</p>
+            <a href="{% url 'product_list' %}?category={{ category.slug }}"
+              >View Products →</a
+            >
+          </div>
+        </div>
+      </div>
+      {% empty %}
+      <div class="col-12 text-center text-muted">
+        Add categories from the Django admin.
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="section-light py-5">
+  <div class="container">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+      <div>
+        <h2>Featured Products</h2>
+        <p class="text-muted mb-0">Popular choices for professional results.</p>
+      </div>
+      <a href="{% url 'product_list' %}" class="btn btn-outline-dark"
+        >View All</a
+      >
+    </div>
+    <div class="row g-4">
+      {% for product in featured_products %}
+      <div class="col-md-6 col-lg-4">
+        <div class="product-card h-100">
+          {% if product.image %}<img
+            src="{{ product.image.url }}"
+            alt="{{ product.name }}"
+          />{% else %}
+          <div class="product-placeholder">PAINT</div>
+          {% endif %}
+          <div class="p-4">
+            <small class="text-brand">{{ product.category.name }}</small>
+            <h5>{{ product.name }}</h5>
+            <p>{{ product.short_description }}</p>
+            <p class="mb-0">
+              <strong>UGX {{ product.selling_price|floatformat:0 }}</strong> ·
+              {{ product.pack_size }}
+            </p>
+            <a
+              href="{{ product.get_absolute_url|default:'#' }}"
+              class="stretched-link"
+            ></a>
+          </div>
+        </div>
+      </div>
+      {% empty %}
+      <div class="col-12 text-muted">
+        Add featured products from the Django admin.
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="py-5">
+  <div class="container">
+    <div class="row g-4 text-center">
+      <div class="col-md-4">
+        <div class="feature">
+          <strong>Excellent Coverage</strong>
+          <p>Less paint, more beautiful coverage.</p>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="feature">
+          <strong>Long-Lasting</strong>
+          <p>Finishes designed to stay beautiful.</p>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="feature">
+          <strong>Expert Support</strong>
+          <p>Get help choosing the right product.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta py-5">
+  <div class="container text-center">
+    <h2>Ready to transform your space?</h2>
+    <p>Tell us what you are painting and we'll help you choose.</p>
+    <a href="{% url 'quote' %}" class="btn btn-dark btn-lg">Get Your Quote</a>
+  </div>
+</section>
+{% endblock %}

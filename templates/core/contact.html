@@ -1,0 +1,35 @@
+{% extends "base.html" %} {% block title %}Contact Us | ColorCraft Paints{% endblock %} {% block content %}
+<div class="page-header">
+  <div class="container">
+    <h1>Contact Us</h1>
+    <p>We are ready to help with your next painting project.</p>
+  </div>
+</div>
+<section class="container py-5">
+  <div class="row g-5">
+    <div class="col-md-6">
+      <h3>Let's talk</h3>
+      <p>
+        Whether you need one room painted or paint for a large project, contact
+        our team.
+      </p>
+      <div class="contact-box">
+        <strong>Phone</strong><br />+256 700 000 000
+      </div>
+      <div class="contact-box">
+        <strong>Email</strong><br />info@colorcraft.ug
+      </div>
+      <div class="contact-box">
+        <strong>Location</strong><br />Kampala, Uganda
+      </div>
+    </div>
+    <div class="col-md-6">
+      <h3>Need a price?</h3>
+      <p>Send us your requirements and request a quotation.</p>
+      <a href="{% url 'quote' %}" class="btn btn-brand btn-lg"
+        >Request a Quote</a
+      >
+    </div>
+  </div>
+</section>
+{% endblock %}

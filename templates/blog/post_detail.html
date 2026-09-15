@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block title %}{{ post.title }} | ColorCraft{% endblock %}
+{% block content %}
+<section class="container py-5"><div class="row justify-content-center"><div class="col-lg-9">
+<small>{{ post.created_at|date:"M d, Y" }}</small><h1 class="display-5 fw-bold mt-2">{{ post.title }}</h1>
+{% if post.image %}<img class="blog-detail-image my-4" src="{{ post.image.url }}" alt="{{ post.title }}">{% endif %}
+<div class="article-content">{{ post.content|linebreaks }}</div>
+</div></div></section>
+{% endblock %}

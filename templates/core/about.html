@@ -1,0 +1,27 @@
+{% extends "base.html" %} {% block title %}About Us | ColorCraft Paints{% endblock %} {% block content %}
+<div class="page-header">
+  <div class="container">
+    <h1>About ColorCraft</h1>
+    <p>Paint that helps great spaces stand out.</p>
+  </div>
+</div>
+<section class="container py-5">
+  <div class="row g-5 align-items-center">
+    <div class="col-lg-6">
+      <div class="about-art">COLOR<br />YOUR<br />WORLD</div>
+    </div>
+    <div class="col-lg-6">
+      <h2>Quality paint. Professional results.</h2>
+      <p>
+        ColorCraft Paints provides dependable painting solutions for
+        residential, commercial and institutional projects.
+      </p>
+      <p>
+        Our focus is simple: quality products, consistent finishes and helpful
+        service from product selection to project completion.
+      </p>
+      <a href="{% url 'quote' %}" class="btn btn-brand">Talk to Us</a>
+    </div>
+  </div>
+</section>
+{% endblock %}

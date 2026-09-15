@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block title %}Products | ColorCraft Paints{% endblock %}
+{% block content %}
+<div class="page-header"><div class="container"><h1>Our Products</h1><p>Choose the right finish for your project.</p></div></div>
+<section class="container py-5">
+<div class="mb-4 d-flex flex-wrap gap-2">
+<a class="btn btn-sm btn-outline-dark" href="{% url 'product_list' %}">All</a>
+{% for category in categories %}<a class="btn btn-sm btn-outline-dark" href="?category={{ category.slug }}">{{ category.name }}</a>{% endfor %}
+</div>
+<div class="row g-4">
+{% for product in products %}
+<div class="col-md-6 col-lg-4"><div class="product-card h-100">
+{% if product.image %}<img src="{{ product.image.url }}" alt="{{ product.name }}">{% else %}<div class="product-placeholder">PAINT</div>{% endif %}
+<div class="p-4"><small class="text-brand">{{ product.category.name }} · {{ product.sku }}</small><h5>{{ product.name }}</h5><p>{{ product.short_description }}</p><p class="mb-2"><strong>UGX {{ product.selling_price|floatformat:0 }}</strong> · {{ product.pack_size }} · {{ product.color }}</p><small class="text-muted">SKU: {{ product.sku }} · {{ product.stock_quantity }} in stock</small>
+<a class="btn btn-sm btn-dark" href="{% url 'product_detail' product.slug %}">View Product</a></div>
+</div></div>
+{% empty %}<div class="col-12 text-center">No products found.</div>{% endfor %}
+</div>
+</section>
+{% endblock %}

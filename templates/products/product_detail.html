@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block title %}{{ product.name }} | ColorCraft Paints{% endblock %}
+{% block content %}
+<section class="container py-5"><div class="row g-5 align-items-center">
+<div class="col-lg-6">{% if product.image %}<img class="detail-image" src="{{ product.image.url }}" alt="{{ product.name }}">{% else %}<div class="detail-placeholder">COLORCRAFT</div>{% endif %}</div>
+<div class="col-lg-6"><small class="text-brand">{{ product.category.name }}</small><h1>{{ product.name }}</h1>
+<p class="lead">{{ product.short_description }}</p>
+<div class="product-description">{{ product.description|linebreaks }}</div>
+<div class="row g-3 my-3">
+<div class="col-6"><small class="text-muted">SKU</small><div class="fw-semibold">{{ product.sku }}</div></div>
+<div class="col-6"><small class="text-muted">Pack Size</small><div class="fw-semibold">{{ product.pack_size }}</div></div>
+<div class="col-6"><small class="text-muted">Color</small><div class="fw-semibold">{{ product.color }}</div></div>
+<div class="col-6"><small class="text-muted">Stock</small><div class="fw-semibold">{{ product.stock_quantity }} available</div></div>
+</div>
+<h4>UGX {{ product.selling_price|floatformat:0 }}</h4>
+<a href="{% url 'quote' %}" class="btn btn-brand btn-lg mt-3">Request a Quote</a></div>
+</div></section>
+{% if related %}
+<section class="section-light py-5"><div class="container"><h2>Related Products</h2><div class="row g-4 mt-1">
+{% for item in related %}<div class="col-md-6 col-lg-3"><div class="product-card h-100 p-4"><h5>{{ item.name }}</h5><p>{{ item.short_description }}</p><a href="{% url 'product_detail' item.slug %}">View →</a></div></div>{% endfor %}
+</div></div></section>
+{% endif %}
+{% endblock %}

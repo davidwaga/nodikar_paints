@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block title %}Paint Tips & News | ColorCraft{% endblock %}
+{% block content %}
+<div class="page-header"><div class="container"><h1>Paint Tips & News</h1><p>Ideas and practical advice for better painting.</p></div></div>
+<section class="container py-5"><div class="row g-4">
+{% for post in posts %}<div class="col-md-6 col-lg-4"><article class="post-card h-100">
+{% if post.image %}<img src="{{ post.image.url }}" alt="{{ post.title }}">{% endif %}
+<div class="p-4"><small>{{ post.created_at|date:"M d, Y" }}</small><h4>{{ post.title }}</h4><p>{{ post.excerpt|truncatewords:25 }}</p><a href="{% url 'post_detail' post.slug %}">Read Article →</a></div>
+</article></div>{% empty %}<div class="col-12 text-center">No articles published yet.</div>{% endfor %}
+</div></section>
+{% endblock %}
